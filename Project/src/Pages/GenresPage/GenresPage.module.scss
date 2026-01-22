@@ -1,0 +1,52 @@
+.genre {
+  padding: 64px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  @media (max-width: 1200px) {
+    padding: 44px 0 0 0;
+    gap: 44px;
+  }
+
+  @media (max-width: 490px) {
+    padding: 25px 0 0 0;
+    gap: 40px;
+  }
+  &__title {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 700;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    @media (max-width: 1200px) {
+      font-size: 40px;
+      line-height: 48px;
+    }
+
+    @include vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7vh 3vw;
+    @media (max-width: 1200px) {
+      gap: 5vh 2vw;
+    }
+    @include vp-1023 {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7vh 3vw;
+    }
+    @include vp-767 {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+}

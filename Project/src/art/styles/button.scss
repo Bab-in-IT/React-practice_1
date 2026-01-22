@@ -1,0 +1,226 @@
+.btn {
+  font-family: $ff-main;
+  border: none;
+  background-color: $color-white;
+  color: $color-black;
+  cursor: pointer;
+  padding: 16px 22px;
+  border-radius: 28px;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &--trailer {
+    background-color: $color-cornflower-blue;
+    width: 29%;
+    color: $color-white;
+    transition: background-color 0.3s ease-in;
+    @media (max-width: 1150px) {
+      width: 100%;
+      grid-column: span 3;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-east-bay;
+    }
+  }
+  &--about {
+    background-color: $color-montana;
+    width: 31%;
+    color: $color-white;
+    border: 1px solid $color-black-40;
+    transition: background-color 0.3s ease-in;
+    @media (max-width: 1150px) {
+      width: 100%;
+    }
+    @media (max-width: 345px) {
+      font-size: 15px;
+      line-height: 20px;
+      padding: 16px 16px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-cod-grey;
+    }
+  }
+  &--favourite {
+    background-color: $color-night-rider;
+    color: $color-white;
+    border: 1px solid $color-black-40;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-night-focus;
+    }
+    &--active {
+      color: $color-perano;
+    }
+  }
+
+  &--reload {
+    background-color: $color-night-rider;
+    color: $color-white;
+    border: 1px solid $color-black-40;
+    transition: background-color 0.3s ease-in;
+    &:hover,
+    &:focus-visible {
+      background-color: $color-night-focus;
+    }
+  }
+  &--back {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: $color-white;
+    transition: color 0.3s ease-in;
+
+    &:hover {
+      color: $color-heliotrope;
+    }
+    & .svg {
+      @include vp-767 {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+  &--more {
+    padding: 16px 20px;
+    max-width: 218px;
+    align-self: center;
+    border-radius: 28px;
+    background-color: $color-cornflower-blue;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
+    margin: 64px 0 0 0;
+
+    @include vp-767 {
+      width: 100%;
+      max-width: unset;
+      margin: 40px 0 0 0;
+    }
+    &:hover {
+      background-color: $color-east-bay;
+      color: $color-white-50;
+    }
+  }
+  &--login {
+    background-color: transparent;
+    color: $color-white;
+    font-size: 24px;
+    line-height: 32px;
+    transition: color 0.3s ease-in;
+    border-radius: unset;
+    padding: 0;
+    margin: 0 0 0 5rem;
+    transition: box-shadow 0.3s ease-in, color 0.3s ease-in;
+    @media (max-width: 1230px) {
+      margin: 0 0 0 2rem;
+    }
+    @include vp-767 {
+      padding: 0;
+      margin: 0 0 0 20px;
+    }
+    &:hover {
+      color: $color-heliotrope;
+    }
+    &--active {
+      border-bottom: 1.5px solid $color-heliotrope;
+      @include vp-767 {
+        display: none;
+      }
+    }
+    &__text {
+      @include vp-767 {
+        display: none;
+      }
+    }
+  }
+  &--form-submit {
+    background: rgba(103, 165, 235, 1);
+    color: $color-white;
+    font-weight: 700;
+    transition: background-color 0.3s ease-in;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-east-bay;
+    }
+  }
+  &--form-change {
+    font-weight: 700;
+    padding: 0;
+  }
+  &--form-close {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 24px;
+    background-color: $color-white;
+    position: absolute;
+    right: -72px;
+    top: 0;
+    @include vp-767 {
+      right: 8px;
+      top: 8px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+  &--logout {
+    max-width: 262px;
+    background-color: $color-cornflower-blue;
+    color: $color-white;
+    transition: background-color 0.3s ease-in;
+
+    @include vp-767 {
+      max-width: unset;
+      // width: 100%;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color-east-bay;
+    }
+  }
+  &--player {
+    position: fixed;
+    border-radius: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    z-index: 20;
+    color: black;
+    background-color: #fff;
+  }
+  &--search {
+    background-color: transparent;
+    color: $color-white;
+    padding: 0;
+    border-radius: unset;
+    opacity: 1;
+    transition: color 0.3s ease-in;
+    display: none;
+    &:hover {
+      color: $color-heliotrope;
+    }
+    @include vp-767 {
+      display: flex;
+    }
+  }
+}
+.btn__trailer--move-page {
+  grid-column: unset;
+}
+.btn__favourite--move-page {
+  width: 68px;
+  height: 56px;
+}

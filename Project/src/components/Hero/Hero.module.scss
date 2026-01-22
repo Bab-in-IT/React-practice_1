@@ -1,0 +1,138 @@
+.hero {
+  padding: 32px 0 0 0;
+  @include vp-1023 {
+    padding: 0;
+  }
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 46% 54%;
+    @include vp-767 {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 60px;
+    padding: 0 10px 0 0;
+    @media (max-width: 1150px) {
+      gap: 30px;
+    }
+  }
+  &__data {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @media (max-width: 1150px) {
+      gap: 10px;
+    }
+    @include vp-767 {
+      padding: 24px 0 0 0;
+    }
+  }
+  &__quality {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+  }
+  &__rating {
+    padding: 4px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: $color-white;
+    border-radius: 16px;
+    background-color: $color-blue;
+    &-text {
+      font-weight: 700;
+    }
+  }
+  &__release,
+  &__genre,
+  &__runtime {
+    color: $color-white-70;
+    @media (max-width: 1150px) {
+      font-size: 16px;
+      line-height: 22px;
+    }
+    @include vp-767 {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+    margin: 0;
+    padding: 0;
+    @media (max-width: 1150px) {
+      font-size: 40px;
+      line-height: 48px;
+    }
+    @include vp-767 {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+  &__description {
+    margin: 0;
+    color: $color-white-70;
+    font-size: 24px;
+    line-height: 32px;
+    @include vp-767 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+  &__panel {
+    display: flex;
+    gap: 16px;
+    @media (max-width: 1150px) {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    min-height: 552px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+
+    @include vp-767 {
+      min-height: 234px;
+      margin: -8px 0 0 0;
+      padding: -8px 0 0 0;
+    }
+  }
+  &__сap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-montana;
+    border: 1px solid $color-montana;
+    border-radius: 16px;
+    &-text {
+      font-size: 24px;
+      line-height: 32px;
+      text-align: center;
+      margin: 0 0 20px 0;
+    }
+  }
+}
+.hero__panel--movie-page {
+  @media (max-width: 1150px) {
+    display: flex;
+    gap: 16px;
+  }
+}

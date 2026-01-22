@@ -1,0 +1,72 @@
+.found {
+  background-color: transparent;
+  padding: 20px 8px;
+  display: flex;
+  gap: 16px;
+  cursor: pointer;
+  transition: outline 0.3s ease-in;
+  &:hover {
+    outline: 1px solid $color-white-50;
+    border-radius: 6px;
+  }
+  @include vp-767 {
+    flex-direction: column;
+    width: 220px;
+
+    padding: 0;
+  }
+  &__img {
+    @include vp-767 {
+      max-width: 156px;
+      width: 100%;
+      max-height: 206px;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+  &__quality {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  &__rating {
+    padding: 2px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: $color-white;
+    border-radius: 16px;
+    background-color: $color-blue;
+    &-text {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+    }
+    &-icon {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  &__release,
+  &__genre,
+  &__runtime {
+    color: $color-white-70;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

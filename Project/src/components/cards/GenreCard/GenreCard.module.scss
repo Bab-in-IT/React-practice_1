@@ -1,0 +1,30 @@
+.genre-card {
+  display: flex;
+  flex-direction: column;
+
+  &__img {
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    @media (max-width: 490px) {
+      max-height: 220px;
+      height: 100%;
+    }
+  }
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-dark-green;
+    border-radius: 0 0 24px 24px;
+    max-height: 84px;
+    height: 100px;
+  }
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    text-align: center;
+  }
+}

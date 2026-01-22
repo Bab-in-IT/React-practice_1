@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  font-family: Play, Arial, sans-serif;
+  color: #ffffff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background: linear-gradient(
+      180deg,
+      #0c1a2d 0%,
+      rgba(39, 36, 36, 0.7) 100%
+    ),
+    linear-gradient(
+      178.73deg,
+      rgba(39, 135, 245, 0.18) -17.53%,
+      rgba(163, 147, 245, 0.18) 131.74%
+    );
+  position: relative;
+}
+
+main {
+  flex-grow: 1;
+}
+
+img {
+  display: block;
+  height: auto;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+textarea {
+  resize: none;
+}
