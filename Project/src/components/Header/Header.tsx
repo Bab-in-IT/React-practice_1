@@ -1,59 +1,44 @@
-import { Link, useMatch, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HeaderSearch } from "./HeaderSearch";
 import styles from "./header.module.scss";
 import "../../art/styles/button.scss";
 import sprite from "../../art/sprite.svg";
-import { useAppDispatch } from "../../store/hook";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMe } from "../../api/api";
-import { clearUserData, setUserData, toggleAuth, toggleModal } from "../../store/AuthSlice";
-import { memo } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { toggleModal } from "../../store/AuthSlice";
+import { memo, useCallback } from "react";
 
 interface HeaderProp {
   openSearching: () => void;
 }
 
 export const Header = memo(({ openSearching }: HeaderProp) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
 
-  const navigate = useNavigate();
-  const matchHome = useMatch("/");
-  const matchGenre = useMatch("/movie/genres");
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const userData = useAppSelector((state) => state.auth.userData);
 
-  const { data, isSuccess } = useQuery({
-    queryFn: () => fetchMe(),
-    queryKey: ["users", "me"],
-    retry: 1,
-    enabled: false,
-  });
-
-  if (isSuccess) {
-    dispatch(toggleAuth(true));
-    dispatch(setUserData(data));
-  }
-  if (!isSuccess) {
-    dispatch(toggleAuth(false));
-    clearUserData();
-  }
-
-  const handleOnClick = () => {
-    if (isSuccess) {
-      navigate("/favorites", { state: data });
+  const handleOnClick = useCallback(() => {
+    if (isAuth) {
+      navigate("/favorites");
     } else {
       dispatch(toggleModal(true));
     }
-  };
+  }, [isAuth, dispatch, navigate]);
 
   const toggleLinkHomePageClassName = () => {
     let className = `${styles["header__link-home"]}`;
-    if (matchHome) {
+    if (location.pathname === "/") {
       className = `${className} ${styles["header__link-home--active"]}`;
     }
     return className;
   };
+
   const toggleLinkGenrePageClassName = () => {
     let className = `${styles["header__link-genre"]}`;
-    if (matchGenre) {
+    if (location.pathname === "/movie/genres") {
       className = `${className} ${styles["header__link-genre--active"]}`;
     }
     return className;
@@ -129,10 +114,10 @@ export const Header = memo(({ openSearching }: HeaderProp) => {
                 className={toggleBtnLoginClassName()}
                 type="button"
                 onClick={handleOnClick}
-                aria-label={data ? data.surname : "Авторизация"}
+                aria-label={userData ? userData.surname : "Авторизация"}
               >
-                {isSuccess ? (
-                  <span className="btn--login__text">{data.surname} </span>
+                {isAuth && userData ? (
+                  <span className="btn--login__text">{userData.surname} </span>
                 ) : (
                   <span className="btn--login__text">Войти</span>
                 )}
