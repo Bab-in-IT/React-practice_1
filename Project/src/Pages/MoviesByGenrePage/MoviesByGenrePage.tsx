@@ -26,29 +26,21 @@ const MoviesByGenrePage = () => {
   const [displayCount, setDisplayCount] = useState(10);
   const COUNT = 50;
 
-  const {
-    data,
-    isLoading,
-    isError,
-    isFetching,
-    error,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery<MovieList>({
-    queryFn: ({ pageParam }) =>
-      getMoviesByProp(genre, pageParam as number, COUNT),
+  const { data, isLoading, isError, isFetching, error, fetchNextPage, hasNextPage } =
+    useInfiniteQuery<MovieList>({
+      queryFn: ({ pageParam }) => getMoviesByProp(genre, pageParam as number, COUNT),
 
-    queryKey: ["movies", "genre", genre],
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
-      if (!lastPage || lastPage.length < COUNT) {
-        return undefined;
-      }
-      return allPages.length;
-    },
+      queryKey: ["movies", "genre", genre],
+      initialPageParam: 0,
+      getNextPageParam: (lastPage, allPages) => {
+        if (!lastPage || lastPage.length < COUNT) {
+          return undefined;
+        }
+        return allPages.length;
+      },
 
-    staleTime: Infinity,
-  });
+      staleTime: Infinity,
+    });
 
   //  ДАННЫЕ В ЕДИНЫЙ СПИСОК
   const allMovies = useMemo(() => {
@@ -61,11 +53,7 @@ const MoviesByGenrePage = () => {
 
     // Если новое отображаемое количество ДОСТИГЛО или ПРЕВЫСИЛО
     // уже загруженное количество И есть еще страницы на сервере — запрашиваем следующую
-    if (
-      displayCount + 10 >= allMovies.length &&
-      hasNextPage &&
-      !isFetching
-    ) {
+    if (displayCount + 10 >= allMovies.length && hasNextPage && !isFetching) {
       fetchNextPage(); // Вызываем встроенную функцию загрузки следующей страницы
     }
   };
@@ -85,9 +73,7 @@ const MoviesByGenrePage = () => {
   const unsortedMovies = useMemo((): MovieList => {
     if (displayCount > 10) {
       const removeArr = new Set(sortedMovies.map((film) => film.id));
-      return [...allMovies]
-        .filter((movie) => !removeArr.has(movie.id))
-        .slice(0, displayCount - 10);
+      return [...allMovies].filter((movie) => !removeArr.has(movie.id)).slice(0, displayCount - 10);
     }
     return [];
   }, [allMovies, displayCount, sortedMovies]);
@@ -121,18 +107,18 @@ const MoviesByGenrePage = () => {
         </button>
         <h3 className={styles["movies__title"]}>{title}</h3>
       </div>
-
-      <MoviesList
-        data={sortedMovies}
-        listClass={stylesMovieList["list--genre-page"]}
-        movieCardClass={stylesMovieCard["movie--genre-page"]}
-      />
-      <MoviesList
-        data={unsortedMovies}
-        listClass={stylesMovieList["list--genre-page"]}
-        movieCardClass={stylesMovieCard["movie--genre-page"]}
-      />
-
+      <div className={styles["movies__list"]}>
+        <MoviesList
+          data={sortedMovies}
+          listClass={stylesMovieList["list--genre-page"]}
+          movieCardClass={stylesMovieCard["movie--genre-page"]}
+        />
+        <MoviesList
+          data={unsortedMovies}
+          listClass={stylesMovieList["list--genre-page"]}
+          movieCardClass={stylesMovieCard["movie--genre-page"]}
+        />
+      </div>
       {displayCount < allMovies.length && (
         <button
           className="btn btn--more"

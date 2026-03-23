@@ -56,21 +56,14 @@ export const getSearchMovie = (title: string): Promise<MovieList> =>
     .then((data) => movieList.parse(data));
 
 // Запрос списка фильмов по жанру с учетом других страниц
-export const getMoviesByProp = (
-  genre: string,
-  page: number,
-  count: number
-): Promise<MovieList> =>
+export const getMoviesByProp = (genre: string, page: number, count: number): Promise<MovieList> =>
   fetch(`${API_URL}/movie?genre=${genre}&page=${page}&count=${count}`)
     .then(validateResponse)
     .then((res) => res.json())
     .then((data) => movieList.parse(data));
 
 // Авторизация пользователя
-export const login = (form: {
-  email: string;
-  password: string;
-}): Promise<void> => {
+export const login = (form: { email: string; password: string }): Promise<void> => {
   return fetch(`${API_URL}/auth/login`, {
     method: "POST",
     credentials: "include",
@@ -84,9 +77,7 @@ export const login = (form: {
 };
 
 // Регистрация пользователя
-export const registration = (
-  form: RegistrationType
-): Promise<void> => {
+export const registration = (form: RegistrationType): Promise<void> => {
   return fetch(`${API_URL}/user`, {
     method: "POST",
     headers: {
@@ -118,9 +109,7 @@ export const logout = (): Promise<LogoutResponse> =>
 interface FavoriteResponse {
   result: boolean;
 }
-export const removeFavorite = (
-  id: number
-): Promise<FavoriteResponse> =>
+export const removeFavorite = (id: number): Promise<FavoriteResponse> =>
   fetch(`${API_URL}/favorites/${id}`, {
     credentials: "include",
     method: "DELETE",
