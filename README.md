@@ -11,4 +11,4 @@ Practice on React in which I used the following tools:
     "redux": "^5.0.1",
     "zod": "^3.25.76"
 
-P.S. Since the server itself comes from the training platform and I do not control it, the incoming data may change.
+
